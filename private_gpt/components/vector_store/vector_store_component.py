@@ -83,7 +83,7 @@ class VectorStoreComponent:
                     settings=chroma_settings,
                 )
                 chroma_collection = chroma_client.get_or_create_collection(
-                    "make_this_parameterizable_per_api_call"
+                    "private_gpt_embeddings"
                 )  # TODO
 
                 self.vector_store = typing.cast(
@@ -114,11 +114,27 @@ class VectorStoreComponent:
                     client = QdrantClient(
                         **settings.qdrant.model_dump(exclude_none=True)
                     )
+                
+                # Create collection if it doesn't exist
+                collection_name = "private_gpt_embeddings"
+                try:
+                    client.get_collection(collection_name)
+                    logger.info(f"Collection '{collection_name}' already exists")
+                except Exception:
+                    logger.info(f"Creating collection '{collection_name}'")
+                    client.create_collection(
+                        collection_name=collection_name,
+                        vectors_config={
+                            "size": settings.embedding.embed_dim,
+                            "distance": "Cosine"
+                        }
+                    )
+                
                 self.vector_store = typing.cast(
                     BasePydanticVectorStore,
                     QdrantVectorStore(
                         client=client,
-                        collection_name="make_this_parameterizable_per_api_call",
+                        collection_name=collection_name,
                     ),  # TODO
                 )
 
@@ -136,14 +152,14 @@ class VectorStoreComponent:
                     logger.info(
                         "Milvus config not found. Using default settings.\n"
                         "Trying to connect to Milvus at local_data/private_gpt/milvus/milvus_local.db "
-                        "with collection 'make_this_parameterizable_per_api_call'."
+                        "with collection 'private_gpt_embeddings'."
                     )
 
                     self.vector_store = typing.cast(
                         BasePydanticVectorStore,
                         MilvusVectorStore(
                             dim=settings.embedding.embed_dim,
-                            collection_name="make_this_parameterizable_per_api_call",
+                            collection_name="private_gpt_embeddings",
                             overwrite=True,
                         ),
                     )

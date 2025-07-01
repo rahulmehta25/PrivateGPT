@@ -111,7 +111,7 @@ class Chroma:
 
 class Qdrant:
     COLLECTION = (
-        "make_this_parameterizable_per_api_call"  # ?! see vector_store_component.py
+        "private_gpt_embeddings"  # Collection name for PrivateGPT embeddings
     )
 
     def __init__(self) -> None:
