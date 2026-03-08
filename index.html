@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PrivateGPT | Private AI for Document Intelligence</title>
+  <meta name="description" content="100% local document Q&A powered by private LLMs. No data leaves your environment. HIPAA ready, SOC2 compatible, fully offline.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-white text-zinc-900 font-sans antialiased">
+
+  <!-- Nav -->
+  <nav class="border-b border-zinc-200 bg-white/80 backdrop-blur-sm sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 bg-zinc-900 rounded-lg flex items-center justify-center">
+          <i data-lucide="shield-check" class="w-4 h-4 text-white"></i>
+        </div>
+        <span class="text-lg font-semibold tracking-tight">PrivateGPT</span>
+      </div>
+      <div class="hidden md:flex items-center gap-8 text-sm text-zinc-600">
+        <a href="#demo" class="hover:text-zinc-900 transition-colors">Demo</a>
+        <a href="#pipeline" class="hover:text-zinc-900 transition-colors">How It Works</a>
+        <a href="#compare" class="hover:text-zinc-900 transition-colors">Compare</a>
+        <a href="#calculator" class="hover:text-zinc-900 transition-colors">Hardware</a>
+      </div>
+      <a href="https://github.com/zylon-ai/private-gpt" target="_blank" rel="noopener" class="flex items-center gap-2 text-sm text-zinc-600 hover:text-zinc-900 transition-colors">
+        <i data-lucide="github" class="w-4 h-4"></i>
+        <span class="hidden sm:inline">GitHub</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="py-24 md:py-32">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-green-200 bg-green-50 text-green-700 text-sm font-medium mb-8">
+        <i data-lucide="lock" class="w-3.5 h-3.5"></i>
+        Fully local &mdash; no cloud required
+      </div>
+      <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-zinc-900 leading-tight max-w-3xl mx-auto">
+        Private AI for Document Intelligence
+      </h1>
+      <p class="mt-6 text-lg md:text-xl text-zinc-500 max-w-2xl mx-auto leading-relaxed">
+        100% local. Zero data leaves your environment. Ask questions about your documents with complete privacy using local LLMs.
+      </p>
+      <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#demo" class="inline-flex items-center gap-2 px-6 py-3 bg-zinc-900 text-white rounded-lg text-sm font-medium hover:bg-zinc-800 transition-colors">
+          Try Live Demo
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+        <a href="https://github.com/zylon-ai/private-gpt" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3 border border-zinc-300 text-zinc-700 rounded-lg text-sm font-medium hover:bg-zinc-50 transition-colors">
+          <i data-lucide="github" class="w-4 h-4"></i>
+          View on GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Indicators -->
+  <section class="border-y border-zinc-200 bg-zinc-50/50">
+    <div class="max-w-6xl mx-auto px-6 py-6">
+      <div class="flex flex-wrap items-center justify-center gap-3 md:gap-4">
+        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-zinc-200 bg-white text-sm text-zinc-700 font-medium">
+          <i data-lucide="wifi-off" class="w-4 h-4 text-green-600"></i>
+          Fully Offline
+        </span>
+        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-zinc-200 bg-white text-sm text-zinc-700 font-medium">
+          <i data-lucide="heart-pulse" class="w-4 h-4 text-green-600"></i>
+          HIPAA Ready
+        </span>
+        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-zinc-200 bg-white text-sm text-zinc-700 font-medium">
+          <i data-lucide="shield-check" class="w-4 h-4 text-green-600"></i>
+          SOC2 Compatible
+        </span>
+        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-zinc-200 bg-white text-sm text-zinc-700 font-medium">
+          <i data-lucide="scale" class="w-4 h-4 text-green-600"></i>
+          Apache 2.0
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo Section -->
+  <section id="demo" class="py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight">See it in action</h2>
+        <p class="mt-3 text-zinc-500 text-lg">Ask questions about any document, privately and locally.</p>
+      </div>
+      <div class="grid lg:grid-cols-2 gap-6">
+        <!-- Document Viewer -->
+        <div class="border border-zinc-200 rounded-lg shadow-sm overflow-hidden bg-white">
+          <div class="px-4 py-3 border-b border-zinc-200 bg-zinc-50 flex items-center gap-3">
+            <i data-lucide="file-text" class="w-4 h-4 text-zinc-400"></i>
+            <span class="text-sm font-medium text-zinc-700">mutual_nda_agreement.pdf</span>
+            <span class="ml-auto text-xs text-zinc-400">3 pages</span>
+          </div>
+          <div class="p-6 text-sm leading-relaxed text-zinc-600 max-h-[480px] overflow-y-auto space-y-4">
+            <p class="text-xs text-zinc-400 uppercase tracking-wider font-medium">Mutual Non-Disclosure Agreement</p>
+            <p>This Mutual Non-Disclosure Agreement (this <strong class="text-zinc-800">"Agreement"</strong>) is entered into as of <strong class="text-zinc-800">January 15, 2025</strong>, by and between:</p>
+            <p><strong class="text-zinc-800">Disclosing Party:</strong> Acme Technologies, Inc., a Delaware corporation with its principal place of business at 100 Innovation Drive, San Francisco, CA 94105.</p>
+            <p><strong class="text-zinc-800">Receiving Party:</strong> Beta Solutions LLC, a California limited liability company with its principal place of business at 200 Market Street, Suite 400, San Francisco, CA 94105.</p>
+
+            <div class="border-l-2 border-zinc-300 pl-4 my-4">
+              <p class="font-medium text-zinc-800">1. Definition of Confidential Information</p>
+              <p>
+                <span class="bg-amber-100 text-zinc-800 px-0.5">"Confidential Information"</span> means any and all non-public, proprietary, or confidential information disclosed by either party, including but not limited to: trade secrets, business plans, financial data, customer lists, technical specifications, source code, algorithms, and product roadmaps.
+              </p>
+            </div>
+
+            <div class="border-l-2 border-zinc-300 pl-4 my-4">
+              <p class="font-medium text-zinc-800">2. Obligations of Receiving Party</p>
+              <p>The Receiving Party shall: (a) hold Confidential Information in strict confidence; (b) not disclose Confidential Information to any third party without prior written consent; (c) use Confidential Information solely for the purpose of evaluating a potential business relationship (the <span class="bg-amber-100 text-zinc-800 px-0.5">"Permitted Purpose"</span>).</p>
+            </div>
+
+            <div class="border-l-2 border-zinc-300 pl-4 my-4">
+              <p class="font-medium text-zinc-800">3. Term and Duration</p>
+              <p>This Agreement shall remain in effect for a period of <span class="bg-amber-100 text-zinc-800 px-0.5">two (2) years</span> from the Effective Date. The obligations of confidentiality shall survive termination for an additional period of <span class="bg-amber-100 text-zinc-800 px-0.5">three (3) years</span>.</p>
+            </div>
+
+            <div class="border-l-2 border-zinc-300 pl-4 my-4">
+              <p class="font-medium text-zinc-800">4. Exclusions</p>
+              <p>Confidential Information does not include information that: (a) is or becomes publicly available through no fault of the Receiving Party; (b) was already in the Receiving Party's possession prior to disclosure; (c) is independently developed without use of Confidential Information; (d) is disclosed with the prior written approval of the Disclosing Party.</p>
+            </div>
+
+            <div class="border-l-2 border-zinc-300 pl-4 my-4">
+              <p class="font-medium text-zinc-800">5. Return of Materials</p>
+              <p>Upon termination or request, the Receiving Party shall promptly return or destroy all Confidential Information and any copies thereof, and shall certify such return or destruction in writing within <span class="bg-amber-100 text-zinc-800 px-0.5">thirty (30) days</span>.</p>
+            </div>
+
+            <div class="border-l-2 border-zinc-300 pl-4 my-4">
+              <p class="font-medium text-zinc-800">6. Governing Law</p>
+              <p>This Agreement shall be governed by and construed in accordance with the laws of the <span class="bg-amber-100 text-zinc-800 px-0.5">State of California</span>, without regard to its conflicts of law principles.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chat Interface -->
+        <div class="border border-zinc-200 rounded-lg shadow-sm overflow-hidden bg-white flex flex-col">
+          <div class="px-4 py-3 border-b border-zinc-200 bg-zinc-50 flex items-center gap-3">
+            <i data-lucide="message-square" class="w-4 h-4 text-zinc-400"></i>
+            <span class="text-sm font-medium text-zinc-700">Chat</span>
+            <span class="ml-auto inline-flex items-center gap-1 text-xs text-green-600 font-medium">
+              <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+              Local model active
+            </span>
+          </div>
+          <div class="flex-1 p-4 space-y-4 max-h-[480px] overflow-y-auto" id="chat-messages">
+            <!-- System message -->
+            <div class="text-center">
+              <span class="text-xs text-zinc-400">Document loaded: mutual_nda_agreement.pdf</span>
+            </div>
+
+            <!-- User Q1 -->
+            <div class="flex justify-end">
+              <div class="bg-zinc-900 text-white px-4 py-2.5 rounded-2xl rounded-br-md max-w-[85%] text-sm">
+                Who are the parties involved in this NDA?
+              </div>
+            </div>
+            <!-- AI A1 -->
+            <div class="flex justify-start">
+              <div class="bg-zinc-100 text-zinc-800 px-4 py-2.5 rounded-2xl rounded-bl-md max-w-[85%] text-sm leading-relaxed">
+                The two parties in this Mutual NDA are <strong>Acme Technologies, Inc.</strong> (a Delaware corporation based at 100 Innovation Drive, San Francisco) and <strong>Beta Solutions LLC</strong> (a California LLC at 200 Market Street, Suite 400, San Francisco).
+              </div>
+            </div>
+
+            <!-- User Q2 -->
+            <div class="flex justify-end">
+              <div class="bg-zinc-900 text-white px-4 py-2.5 rounded-2xl rounded-br-md max-w-[85%] text-sm">
+                How long does the confidentiality obligation last?
+              </div>
+            </div>
+            <!-- AI A2 -->
+            <div class="flex justify-start">
+              <div class="bg-zinc-100 text-zinc-800 px-4 py-2.5 rounded-2xl rounded-bl-md max-w-[85%] text-sm leading-relaxed">
+                The agreement is effective for <strong>2 years</strong> from the Effective Date. After termination, confidentiality obligations continue for an additional <strong>3 years</strong>, for a total of up to 5 years of protection.
+              </div>
+            </div>
+
+            <!-- User Q3 -->
+            <div class="flex justify-end">
+              <div class="bg-zinc-900 text-white px-4 py-2.5 rounded-2xl rounded-br-md max-w-[85%] text-sm">
+                What happens when the agreement ends?
+              </div>
+            </div>
+            <!-- AI A3 -->
+            <div class="flex justify-start">
+              <div class="bg-zinc-100 text-zinc-800 px-4 py-2.5 rounded-2xl rounded-bl-md max-w-[85%] text-sm leading-relaxed">
+                Upon termination or request, the Receiving Party must <strong>return or destroy</strong> all Confidential Information and copies within <strong>30 days</strong>, and provide written certification of the return or destruction.
+              </div>
+            </div>
+          </div>
+          <!-- Input -->
+          <div class="border-t border-zinc-200 p-3">
+            <div class="flex items-center gap-2 bg-zinc-50 rounded-lg border border-zinc-200 px-3 py-2">
+              <input type="text" placeholder="Ask about this document..." class="flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-400" disabled>
+              <button class="p-1.5 rounded-md bg-zinc-900 text-white hover:bg-zinc-800 transition-colors" disabled>
+                <i data-lucide="arrow-up" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+            <p class="text-xs text-zinc-400 mt-2 text-center">Demo only. Deploy PrivateGPT locally for live queries.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RAG Pipeline -->
+  <section id="pipeline" class="py-20 md:py-28 bg-zinc-50/50 border-y border-zinc-200">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight">How PrivateGPT works</h2>
+        <p class="mt-3 text-zinc-500 text-lg">A complete RAG pipeline running entirely on your hardware.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+        <!-- Step 1 -->
+        <div class="bg-white border border-zinc-200 rounded-lg shadow-sm p-6 text-center relative">
+          <div class="w-12 h-12 bg-zinc-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="upload" class="w-6 h-6 text-zinc-600"></i>
+          </div>
+          <p class="text-xs text-zinc-400 font-medium uppercase tracking-wider mb-1">Step 1</p>
+          <h3 class="font-semibold text-zinc-900">Upload</h3>
+          <p class="text-sm text-zinc-500 mt-2">Ingest PDFs, DOCX, TXT, and other document formats.</p>
+          <div class="hidden lg:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10">
+            <i data-lucide="chevron-right" class="w-5 h-5 text-zinc-300"></i>
+          </div>
+        </div>
+        <!-- Step 2 -->
+        <div class="bg-white border border-zinc-200 rounded-lg shadow-sm p-6 text-center relative">
+          <div class="w-12 h-12 bg-zinc-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="scissors" class="w-6 h-6 text-zinc-600"></i>
+          </div>
+          <p class="text-xs text-zinc-400 font-medium uppercase tracking-wider mb-1">Step 2</p>
+          <h3 class="font-semibold text-zinc-900">Chunk</h3>
+          <p class="text-sm text-zinc-500 mt-2">Split documents into optimal-size text segments.</p>
+          <div class="hidden lg:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10">
+            <i data-lucide="chevron-right" class="w-5 h-5 text-zinc-300"></i>
+          </div>
+        </div>
+        <!-- Step 3 -->
+        <div class="bg-white border border-zinc-200 rounded-lg shadow-sm p-6 text-center relative">
+          <div class="w-12 h-12 bg-zinc-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="binary" class="w-6 h-6 text-zinc-600"></i>
+          </div>
+          <p class="text-xs text-zinc-400 font-medium uppercase tracking-wider mb-1">Step 3</p>
+          <h3 class="font-semibold text-zinc-900">Embed</h3>
+          <p class="text-sm text-zinc-500 mt-2">Generate vector embeddings using local models.</p>
+          <div class="hidden lg:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10">
+            <i data-lucide="chevron-right" class="w-5 h-5 text-zinc-300"></i>
+          </div>
+        </div>
+        <!-- Step 4 -->
+        <div class="bg-white border border-zinc-200 rounded-lg shadow-sm p-6 text-center relative">
+          <div class="w-12 h-12 bg-zinc-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="search" class="w-6 h-6 text-zinc-600"></i>
+          </div>
+          <p class="text-xs text-zinc-400 font-medium uppercase tracking-wider mb-1">Step 4</p>
+          <h3 class="font-semibold text-zinc-900">Retrieve</h3>
+          <p class="text-sm text-zinc-500 mt-2">Find the most relevant chunks via similarity search.</p>
+          <div class="hidden lg:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10">
+            <i data-lucide="chevron-right" class="w-5 h-5 text-zinc-300"></i>
+          </div>
+        </div>
+        <!-- Step 5 -->
+        <div class="bg-white border border-zinc-200 rounded-lg shadow-sm p-6 text-center">
+          <div class="w-12 h-12 bg-zinc-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="sparkles" class="w-6 h-6 text-zinc-600"></i>
+          </div>
+          <p class="text-xs text-zinc-400 font-medium uppercase tracking-wider mb-1">Step 5</p>
+          <h3 class="font-semibold text-zinc-900">Generate</h3>
+          <p class="text-sm text-zinc-500 mt-2">Produce grounded answers with source citations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Table -->
+  <section id="compare" class="py-20 md:py-28">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight">How does it compare?</h2>
+        <p class="mt-3 text-zinc-500 text-lg">See why privacy-first matters for sensitive documents.</p>
+      </div>
+      <div class="border border-zinc-200 rounded-lg shadow-sm overflow-hidden">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="bg-zinc-50 border-b border-zinc-200">
+              <th class="text-left px-6 py-4 font-semibold text-zinc-900">Feature</th>
+              <th class="text-center px-4 py-4 font-semibold text-zinc-900">PrivateGPT</th>
+              <th class="text-center px-4 py-4 font-semibold text-zinc-500">ChatGPT</th>
+              <th class="text-center px-4 py-4 font-semibold text-zinc-500">Gemini</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-zinc-100">
+            <tr>
+              <td class="px-6 py-3.5 text-zinc-700">Runs fully offline</td>
+              <td class="px-4 py-3.5 text-center"><i data-lucide="check" class="w-5 h-5 text-green-600 mx-auto"></i></td>
+              <td class="px-4 py-3.5 text-center"><i data-lucide="x" class="w-5 h-5 text-zinc-300 mx-auto"></i></td>
+              <td class="px-4 py-3.5 text-center"><i data-lucide="x" class="w-5 h-5 text-zinc-300 mx-auto"></i></td>
+            </tr>
+            <tr class="bg-zinc-50/50">
+              <td class="px-6 py-3.5 text-zinc-700">Data never leaves your machine</td>
+              <td class="px-4 py-3.5 text-center"><i data-lucide="check" class="w-5 h-5 text-green-600 mx-auto"></i></td>
+              <td class="px-4 py-3.5 text-center"><i data-lucide="x" class="w-5 h-5 text-zinc-300 mx-auto"></i></td>
+              <td class="px-4 py-3.5 text-center"><i data-lucide="x" class="w-5 h-5 text-zinc-300 mx-auto"></i></td>
+            </tr>
+            <tr>
+              <td class="px-6 py-3.5 text-zinc-700">Document Q&A with citations</td>
+              <td class="px-4 py-3.5 text-center"><i data-lucide="check" class="w-5 h-5 text-green-600 mx-auto"></i></td>
+              <td class="px-4 py-3.5 text-center"><i data-lucide="check" class="w-5 h-5 text-green-600 mx-auto"></i></td>
+              <td class="px-4 py-3.5 text-center"><i data-lucide="check" class="w-5 h-5 text-green-600 mx-auto"></i></td>
+            </tr>
+            <tr class="bg-zinc-50/50">
+              <td class="px-6 py-3.5 text-zinc-700">HIPAA / SOC2 compatible</td>
+              <td class="px-4 py-3.5 text-center"><i data-lucide="check" class="w-5 h-5 text-green-600 mx-auto"></i></td>
+              <td class="px-4 py-3.5 text-center text-zinc-400 text-xs">Enterprise only</td>
+              <td class="px-4 py-3.5 text-center text-zinc-400 text-xs">Enterprise only</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-3.5 text-zinc-700">No subscription fees</td>
+              <td class="px-4 py-3.5 text-center"><i data-lucide="check" class="w-5 h-5 text-green-600 mx-auto"></i></td>
+              <td class="px-4 py-3.5 text-center"><i data-lucide="x" class="w-5 h-5 text-zinc-300 mx-auto"></i></td>
+              <td class="px-4 py-3.5 text-center"><i data-lucide="x" class="w-5 h-5 text-zinc-300 mx-auto"></i></td>
+            </tr>
+            <tr class="bg-zinc-50/50">
+              <td class="px-6 py-3.5 text-zinc-700">Open source</td>
+              <td class="px-4 py-3.5 text-center"><i data-lucide="check" class="w-5 h-5 text-green-600 mx-auto"></i></td>
+              <td class="px-4 py-3.5 text-center"><i data-lucide="x" class="w-5 h-5 text-zinc-300 mx-auto"></i></td>
+              <td class="px-4 py-3.5 text-center"><i data-lucide="x" class="w-5 h-5 text-zinc-300 mx-auto"></i></td>
+            </tr>
+            <tr>
+              <td class="px-6 py-3.5 text-zinc-700">Custom model support</td>
+              <td class="px-4 py-3.5 text-center"><i data-lucide="check" class="w-5 h-5 text-green-600 mx-auto"></i></td>
+              <td class="px-4 py-3.5 text-center"><i data-lucide="x" class="w-5 h-5 text-zinc-300 mx-auto"></i></td>
+              <td class="px-4 py-3.5 text-center"><i data-lucide="x" class="w-5 h-5 text-zinc-300 mx-auto"></i></td>
+            </tr>
+            <tr class="bg-zinc-50/50">
+              <td class="px-6 py-3.5 text-zinc-700">GPT-4 class quality</td>
+              <td class="px-4 py-3.5 text-center text-zinc-400 text-xs">Model dependent</td>
+              <td class="px-4 py-3.5 text-center"><i data-lucide="check" class="w-5 h-5 text-green-600 mx-auto"></i></td>
+              <td class="px-4 py-3.5 text-center"><i data-lucide="check" class="w-5 h-5 text-green-600 mx-auto"></i></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hardware Calculator -->
+  <section id="calculator" class="py-20 md:py-28 bg-zinc-50/50 border-y border-zinc-200">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight">Hardware Calculator</h2>
+        <p class="mt-3 text-zinc-500 text-lg">Estimate what you need to run PrivateGPT locally.</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- Inputs -->
+        <div class="bg-white border border-zinc-200 rounded-lg shadow-sm p-6 space-y-6">
+          <h3 class="font-semibold text-zinc-900">Your workload</h3>
+
+          <div>
+            <label class="flex items-center justify-between text-sm mb-2">
+              <span class="text-zinc-700">Document count</span>
+              <span class="font-medium text-zinc-900" id="doc-count-label">1,000</span>
+            </label>
+            <input type="range" min="100" max="100000" value="1000" step="100" id="doc-count"
+              class="w-full h-2 bg-zinc-200 rounded-lg appearance-none cursor-pointer accent-zinc-900">
+            <div class="flex justify-between text-xs text-zinc-400 mt-1">
+              <span>100</span><span>100k</span>
+            </div>
+          </div>
+
+          <div>
+            <label class="flex items-center justify-between text-sm mb-2">
+              <span class="text-zinc-700">Queries per day</span>
+              <span class="font-medium text-zinc-900" id="queries-label">50</span>
+            </label>
+            <input type="range" min="10" max="1000" value="50" step="10" id="queries"
+              class="w-full h-2 bg-zinc-200 rounded-lg appearance-none cursor-pointer accent-zinc-900">
+            <div class="flex justify-between text-xs text-zinc-400 mt-1">
+              <span>10</span><span>1,000</span>
+            </div>
+          </div>
+
+          <div>
+            <label class="flex items-center justify-between text-sm mb-2">
+              <span class="text-zinc-700">Model size</span>
+              <span class="font-medium text-zinc-900" id="model-label">7B</span>
+            </label>
+            <input type="range" min="0" max="3" value="1" step="1" id="model-size"
+              class="w-full h-2 bg-zinc-200 rounded-lg appearance-none cursor-pointer accent-zinc-900">
+            <div class="flex justify-between text-xs text-zinc-400 mt-1">
+              <span>3B</span><span>7B</span><span>13B</span><span>70B</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Results -->
+        <div class="bg-white border border-zinc-200 rounded-lg shadow-sm p-6">
+          <h3 class="font-semibold text-zinc-900 mb-6">Recommended specs</h3>
+          <div class="space-y-4" id="hw-results">
+            <div class="flex items-start gap-3 p-3 bg-zinc-50 rounded-lg">
+              <i data-lucide="cpu" class="w-5 h-5 text-zinc-500 mt-0.5 flex-shrink-0"></i>
+              <div>
+                <p class="text-sm font-medium text-zinc-900" id="rec-cpu">8-core CPU</p>
+                <p class="text-xs text-zinc-500">Apple M2 / AMD Ryzen 7 or equivalent</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-zinc-50 rounded-lg">
+              <i data-lucide="memory-stick" class="w-5 h-5 text-zinc-500 mt-0.5 flex-shrink-0"></i>
+              <div>
+                <p class="text-sm font-medium text-zinc-900" id="rec-ram">16 GB RAM</p>
+                <p class="text-xs text-zinc-500" id="rec-ram-note">Sufficient for 7B models with moderate document sets</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-zinc-50 rounded-lg">
+              <i data-lucide="hard-drive" class="w-5 h-5 text-zinc-500 mt-0.5 flex-shrink-0"></i>
+              <div>
+                <p class="text-sm font-medium text-zinc-900" id="rec-gpu">8 GB VRAM GPU (optional)</p>
+                <p class="text-xs text-zinc-500" id="rec-gpu-note">RTX 3070 / RX 6800 for faster inference</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-zinc-50 rounded-lg">
+              <i data-lucide="database" class="w-5 h-5 text-zinc-500 mt-0.5 flex-shrink-0"></i>
+              <div>
+                <p class="text-sm font-medium text-zinc-900" id="rec-storage">50 GB storage</p>
+                <p class="text-xs text-zinc-500" id="rec-storage-note">For models, embeddings, and document index</p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 p-3 border border-green-200 bg-green-50 rounded-lg">
+            <p class="text-sm text-green-800 flex items-start gap-2">
+              <i data-lucide="info" class="w-4 h-4 mt-0.5 flex-shrink-0"></i>
+              <span id="rec-summary">This configuration handles ~1,000 documents with ~50 daily queries comfortably.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Getting Started -->
+  <section class="py-20 md:py-28">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight">Get started in minutes</h2>
+      <p class="mt-3 text-zinc-500 text-lg">Three commands to private document intelligence.</p>
+      <div class="mt-10 bg-zinc-900 rounded-lg p-6 text-left overflow-x-auto">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="w-3 h-3 rounded-full bg-red-400"></span>
+          <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+          <span class="w-3 h-3 rounded-full bg-green-400"></span>
+          <span class="ml-3 text-xs text-zinc-500 font-mono">terminal</span>
+        </div>
+        <pre class="text-sm font-mono leading-relaxed"><code class="text-zinc-300"><span class="text-zinc-500">$</span> git clone https://github.com/zylon-ai/private-gpt
+<span class="text-zinc-500">$</span> cd private-gpt
+<span class="text-zinc-500">$</span> poetry install --extras ui
+<span class="text-zinc-500">$</span> PGPT_PROFILES=local make run</code></pre>
+      </div>
+      <p class="mt-4 text-sm text-zinc-400">Requires Python 3.11+, Poetry, and a local LLM provider (Ollama recommended).</p>
+      <div class="mt-8">
+        <a href="https://github.com/zylon-ai/private-gpt" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3 bg-zinc-900 text-white rounded-lg text-sm font-medium hover:bg-zinc-800 transition-colors">
+          <i data-lucide="github" class="w-4 h-4"></i>
+          View Documentation
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-zinc-200 py-10">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-2 text-zinc-500 text-sm">
+          <div class="w-6 h-6 bg-zinc-900 rounded flex items-center justify-center">
+            <i data-lucide="shield-check" class="w-3 h-3 text-white"></i>
+          </div>
+          <span>PrivateGPT by Zylon</span>
+        </div>
+        <div class="flex items-center gap-6 text-sm text-zinc-500">
+          <a href="https://github.com/zylon-ai/private-gpt" target="_blank" rel="noopener" class="hover:text-zinc-900 transition-colors">GitHub</a>
+          <a href="https://docs.privategpt.dev" target="_blank" rel="noopener" class="hover:text-zinc-900 transition-colors">Docs</a>
+          <a href="https://github.com/zylon-ai/private-gpt/blob/main/LICENSE" target="_blank" rel="noopener" class="hover:text-zinc-900 transition-colors">Apache 2.0</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Hardware calculator logic
+    const modelSizes = ['3B', '7B', '13B', '70B'];
+    const docCountSlider = document.getElementById('doc-count');
+    const queriesSlider = document.getElementById('queries');
+    const modelSlider = document.getElementById('model-size');
+
+    function formatNumber(n) {
+      return n >= 1000 ? (n / 1000).toFixed(n % 1000 === 0 ? 0 : 1) + 'k' : n.toString();
+    }
+
+    function updateCalculator() {
+      const docs = parseInt(docCountSlider.value);
+      const queries = parseInt(queriesSlider.value);
+      const modelIdx = parseInt(modelSlider.value);
+      const model = modelSizes[modelIdx];
+
+      document.getElementById('doc-count-label').textContent = docs.toLocaleString();
+      document.getElementById('queries-label').textContent = queries.toLocaleString();
+      document.getElementById('model-label').textContent = model;
+
+      let cpu, ram, ramNote, gpu, gpuNote, storage, storageNote, summary;
+
+      if (modelIdx === 0) { // 3B
+        cpu = '4-core CPU';
+        ram = '8 GB RAM';
+        ramNote = 'Minimum for 3B models with small document sets';
+        gpu = 'Integrated GPU (optional)';
+        gpuNote = 'CPU inference is viable for 3B parameter models';
+        storage = docs > 10000 ? '40 GB storage' : '20 GB storage';
+        storageNote = 'For model weights and document embeddings';
+      } else if (modelIdx === 1) { // 7B
+        cpu = queries > 200 ? '12-core CPU' : '8-core CPU';
+        ram = docs > 10000 ? '32 GB RAM' : '16 GB RAM';
+        ramNote = docs > 10000 ? 'More RAM helps with large embedding indexes' : 'Sufficient for 7B models with moderate document sets';
+        gpu = queries > 200 ? '12 GB VRAM GPU' : '8 GB VRAM GPU (optional)';
+        gpuNote = queries > 200 ? 'RTX 4070 / RX 7800 for higher throughput' : 'RTX 3070 / RX 6800 for faster inference';
+        storage = docs > 10000 ? '80 GB storage' : '50 GB storage';
+        storageNote = 'For models, embeddings, and document index';
+      } else if (modelIdx === 2) { // 13B
+        cpu = '12-core CPU';
+        ram = docs > 10000 ? '64 GB RAM' : '32 GB RAM';
+        ramNote = 'Required for 13B model weights and context';
+        gpu = '16 GB VRAM GPU';
+        gpuNote = 'RTX 4080 / A4000 recommended for 13B inference';
+        storage = docs > 10000 ? '120 GB storage' : '80 GB storage';
+        storageNote = 'For larger model files and extended indexes';
+      } else { // 70B
+        cpu = '16-core CPU';
+        ram = '128 GB RAM';
+        ramNote = 'Essential for 70B model loading and operation';
+        gpu = '48+ GB VRAM GPU (or multi-GPU)';
+        gpuNote = 'A100 / dual RTX 4090 for 70B parameter models';
+        storage = docs > 10000 ? '300 GB storage' : '200 GB storage';
+        storageNote = 'For 70B model weights and full document index';
+      }
+
+      document.getElementById('rec-cpu').textContent = cpu;
+      document.getElementById('rec-ram').textContent = ram;
+      document.getElementById('rec-ram-note').textContent = ramNote;
+      document.getElementById('rec-gpu').textContent = gpu;
+      document.getElementById('rec-gpu-note').textContent = gpuNote;
+      document.getElementById('rec-storage').textContent = storage;
+      document.getElementById('rec-storage-note').textContent = storageNote;
+
+      document.getElementById('rec-summary').textContent =
+        `This configuration handles ~${formatNumber(docs)} documents with ~${queries.toLocaleString()} daily queries comfortably.`;
+    }
+
+    docCountSlider.addEventListener('input', updateCalculator);
+    queriesSlider.addEventListener('input', updateCalculator);
+    modelSlider.addEventListener('input', updateCalculator);
+  </script>
+</body>
+</html>
